@@ -102,6 +102,7 @@ export default function Header() {
 
           <li><NavLink onClick={() => setOpen(false)} to="/" className={mobileLinkClass}>Início</NavLink></li>
           <li><NavLink onClick={() => setOpen(false)} to="/denunciar" className={mobileLinkClass}>Denunciar</NavLink></li>
+          <li><NavLink onClick={() => setOpen(false)} to="/comunidade" className={mobileLinkClass}>Comunidade</NavLink></li>
           <li><NavLink onClick={() => setOpen(false)} to="/noticias" className={mobileLinkClass}>Notícias</NavLink></li>
           <li><NavLink onClick={() => setOpen(false)} to="/aboutus" className={mobileLinkClass}>Sobre</NavLink></li>
           <li><NavLink onClick={() => setOpen(false)} to="/faleconosco" className={mobileLinkClass}>Contato</NavLink></li>
