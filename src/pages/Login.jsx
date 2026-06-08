@@ -16,7 +16,8 @@ export default function LoginERegistro() {
     setCarregando(true)
 
     try {
-      const resposta = await fetch('http://localhost:3000/api/auth/login', {
+      // const resposta = await fetch('http://localhost:3000/api/auth/login', {
+      const resposta = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -62,80 +63,80 @@ export default function LoginERegistro() {
               <h2 className="text-xl md:text-2xl font-bold text-green-900 mb-1">Bem-vindo de volta</h2>
               <p className="text-xs md:text-sm text-slate-500 mb-6">Acesse sua conta para continuar.</p>
 
-                {/* SUCESSO */}
-                {mensagem && (
-                  <div className="mt-4 rounded-xl bg-green-50 border border-green-200 px-4 py-3 text-sm text-green-700">
-                    {mensagem}
-                  </div>
-                )}
+              {/* SUCESSO */}
+              {mensagem && (
+                <div className="mt-4 rounded-xl bg-green-50 border border-green-200 px-4 py-3 text-sm text-green-700">
+                  {mensagem}
+                </div>
+              )}
 
-                {/* ERRO */}
-                {erro && (
-                  <div className="mt-4 rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
-                    {erro}
-                  </div>
-                )}
+              {/* ERRO */}
+              {erro && (
+                <div className="mt-4 rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+                  {erro}
+                </div>
+              )}
 
-                <form className="mt-4 md:mt-6 space-y-3 md:space-y-4" onSubmit={handleLogin}>
+              <form className="mt-4 md:mt-6 space-y-3 md:space-y-4" onSubmit={handleLogin}>
 
-                  <label className="block text-sm text-slate-700">
-                    <span className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-slate-500">
-                      Email
-                    </span>
+                <label className="block text-sm text-slate-700">
+                  <span className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-slate-500">
+                    Email
+                  </span>
 
-                    <input
-                      type="email"
-                      value={loginData.email}
-                      onChange={(event) =>
-                        setLoginData({ ...loginData, email: event.target.value })
-                      }
-                      placeholder="seu@email.com"
-                      required
-                      className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 md:px-4 md:py-2.5 text-sm md:text-base outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
-                    />
-                  </label>
+                  <input
+                    type="email"
+                    value={loginData.email}
+                    onChange={(event) =>
+                      setLoginData({ ...loginData, email: event.target.value })
+                    }
+                    placeholder="seu@email.com"
+                    required
+                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 md:px-4 md:py-2.5 text-sm md:text-base outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                  />
+                </label>
 
-                  <label className="block text-sm text-slate-700">
-                    <span className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-slate-500">
-                      Senha
-                    </span>
+                <label className="block text-sm text-slate-700">
+                  <span className="mb-1.5 block text-xs uppercase tracking-[0.2em] text-slate-500">
+                    Senha
+                  </span>
 
-                    <input
-                      type="password"
-                      value={loginData.password}
-                      onChange={(event) =>
-                        setLoginData({ ...loginData, password: event.target.value })
-                      }
-                      placeholder="••••••••"
-                      required
-                      className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 md:px-4 md:py-2.5 text-sm md:text-base outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
-                    />
-                  </label>
+                  <input
+                    type="password"
+                    value={loginData.password}
+                    onChange={(event) =>
+                      setLoginData({ ...loginData, password: event.target.value })
+                    }
+                    placeholder="••••••••"
+                    required
+                    className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 md:px-4 md:py-2.5 text-sm md:text-base outline-none focus:border-green-500 focus:ring-2 focus:ring-green-200"
+                  />
+                </label>
 
-                  <button
-                    type="submit"
-                    disabled={carregando}
-                    className="w-full rounded-xl bg-green-900 px-4 py-2 md:px-5 md:py-2.5 text-sm md:text-base font-semibold text-white hover:bg-green-800 disabled:opacity-50"
-                  >
-                    {carregando ? 'Entrando...' : 'Entrar'}
-                  </button>
+                <button
+                  type="submit"
+                  disabled={carregando}
+                  className="w-full rounded-xl bg-green-900 px-4 py-2 md:px-5 md:py-2.5 text-sm md:text-base font-semibold text-white hover:bg-green-800 disabled:opacity-50"
+                >
+                  {carregando ? 'Entrando...' : 'Entrar'}
+                </button>
 
-                  <div className="text-center text-xs sm:text-sm text-slate-500">
-                    <a href="#" className="font-medium text-green-800 hover:text-green-700">
-                      Esqueci minha senha
-                    </a>
-                  </div>
+                <div className="text-center text-xs sm:text-sm text-slate-500">
+                  <a href="#" className="font-medium text-green-800 hover:text-green-700">
+                    Esqueci minha senha
+                  </a>
+                </div>
 
-                  <div className="text-center text-xs sm:text-sm text-slate-500 pt-3 border-t border-slate-100">
-                    Não tem conta?{" "}
-                    <a href="/cadastro" className="font-bold text-green-700 hover:text-green-600 transition-colors">
-                      Cadastre-se aqui
-                    </a>
-                  </div>
+                <div className="text-center text-xs sm:text-sm text-slate-500 pt-3 border-t border-slate-100">
+                  Não tem conta?{" "}
+                  <a href="/cadastro" className="font-bold text-green-700 hover:text-green-600 transition-colors">
+                    Cadastre-se aqui
+                  </a>
+                </div>
 
-                </form>
-              </div>
+              </form>
             </div>
+          </div>
 
         </section>
       </div>

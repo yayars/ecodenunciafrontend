@@ -37,7 +37,8 @@ export default function LoginERegistro() {
     setCarregando(true)
 
     try {
-      const resposta = await fetch('http://localhost:3000/user', {
+      // const resposta = await fetch('http://localhost:3000/user', {
+      const resposta = await fetch(`${import.meta.env.VITE_API_URL}/user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
