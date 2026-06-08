@@ -75,7 +75,7 @@ export default function Denunciar() {
 
   const fetchDenuncias = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/denuncia`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/denuncia`);
       if (response.ok) {
         const data = await response.json();
         setDenuncias(data);
@@ -95,9 +95,9 @@ export default function Denunciar() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = editingId 
-      ? `http://localhost:3000/denuncia/${editingId}` 
-      : 'http://localhost:3000/denuncia';
+    const url = editingId
+  ? `${import.meta.env.VITE_API_URL}/denuncia/${editingId}`
+  : `${import.meta.env.VITE_API_URL}/denuncia`;
     
     const method = editingId ? 'PATCH' : 'POST';
 
@@ -135,7 +135,7 @@ export default function Denunciar() {
   const handleDelete = async (id) => {
     cancelDelete();
     try {
-      const response = await fetch(`http://localhost:3000/denuncia/${id}`, {
+     const response = await fetch(`${import.meta.env.VITE_API_URL}/denuncia/${id}`, {
         method: 'DELETE'
       });
       if (response.ok) {

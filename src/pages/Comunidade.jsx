@@ -89,7 +89,7 @@ export default function BlogComunidade() {
 
     const fetchPosts = async () => {
         try {
-            const res = await fetch('http://localhost:3000/publicacao');
+           const res = await fetch(`${import.meta.env.VITE_API_URL}/publicacao`);
             if (res.ok) {
                 const data = await res.json();
                 setDbPosts(data);
@@ -105,7 +105,10 @@ export default function BlogComunidade() {
             openModal('Campos obrigatórios', 'Por favor, preencha o título e o conteúdo da publicação.', 'error');
             return;
         }
-        const url = editingId ? `http://localhost:3000/publicacao/${editingId}` : 'http://localhost:3000/publicacao';
+       const url = editingId
+  ? `${import.meta.env.VITE_API_URL}/publicacao/${editingId}`
+  : `${import.meta.env.VITE_API_URL}/publicacao`;
+
         const method = editingId ? 'PATCH' : 'POST';
         try {
             const res = await fetch(url, {
@@ -133,7 +136,7 @@ export default function BlogComunidade() {
 
     const handleLike = async (id) => {
         try {
-            const res = await fetch(`http://localhost:3000/publicacao/${id}/like`, { method: 'POST' });
+           const res = await fetch(`${import.meta.env.VITE_API_URL}/publicacao/${id}/like`, { method: 'POST' });
             if (res.ok) fetchPosts();
         } catch (error) {
             console.error('Erro ao curtir:', error);
@@ -150,7 +153,7 @@ export default function BlogComunidade() {
     const handleDelete = async (id) => {
         cancelDelete();
         try {
-            const res = await fetch(`http://localhost:3000/publicacao/${id}`, { method: 'DELETE' });
+           const res = await fetch(`${import.meta.env.VITE_API_URL}/publicacao/${id}`, { method: 'DELETE' });
             if (res.ok) {
                 fetchPosts();
                 openModal('Excluído!', 'A publicação foi removida da comunidade.', 'delete');
